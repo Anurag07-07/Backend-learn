@@ -50,24 +50,29 @@ export const getUserOnDiseases = (req:Request,res:Response)=>{
 
 ////////////////////////////////////////////////////POST////////////////////////////////////////////////////////////////////////////
 
+//Create a Patient
 export const CreatePatient = (req:Request,res:Response)=>{
   const {name,diseases} = req.body
 
+  //If user or diseases are not given in the body
   if (!name || !diseases ) {
     return res.status(404).json({
       message:`Data pura de bhai`
     })
   }
-
-  const mariz = {
+  
+  //If we get the data create a patient obj and Insert in the Local Database
+  //Which is in the form of array
+  const patient = {
     id:Patient.length+1,
     name:name,
     diseases:diseases,
   }
 
-  Patient.push(mariz)
+  //Push the Object in the Array
+  Patient.push(patient)
 
   res.status(200).json({
-    message:`Mariz Added`
+    message:`Patient Added`
   })
 }
